@@ -8,7 +8,8 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     // Add the passed value to the storage object with key being the current number of keys + 1
-    storage[Object.keys(storage).length + 1] = value;
+
+    storage[Object.keys(storage).length] = value;
     console.log(storage);
     // joey.enqueue('a') >> {0+1 : 'a' } >> {1: 'a'}
     // joey.enqueue('b') >> {1 +1 : 'b' } >> {1: 'a', 2: 'b'}
@@ -16,16 +17,22 @@ var Queue = function() {
 
   someInstance.dequeue = function() {
     // If the storage object has more than 0 keys
-    // Access the values array of storage at index 0 and assign it to a variable
-    // Delete the first key from the storage object
+    if (Object.keys(storage).length > 0) {
+      // Access the values array of storage at index 0 and assign it to a variable
+      var removedString = Object.values(storage)[0];
 
-    // {1: 'a', 2: 'b'} >> 2 keys >> Object.values ['a', 'b']
-    // joey.dequeue()
-    // >> var returnString = Object.values(storage)[0]; >> var returnString = 'a'
-    // >> delete storage[Object.keys(storage)[0]];
+      // Loop through the keys array
+      for (var i = 0; i < Object.keys(storage).length; i++) {
+        // The current key is equal to the value in storage at the next key
+        storage[i] = storage[i + 1];
+      }
+      // Delete the last key from the storage object
+      delete storage[Object.keys(storage)[Object.keys(storage).length - 1]];
+
+    }
 
     // Return the string removed
-
+    return removedString;
   };
 
   someInstance.size = function() {
