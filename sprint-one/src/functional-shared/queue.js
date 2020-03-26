@@ -19,6 +19,7 @@ var queueMethods = {
   // Create property for enqueue
   enqueue: function (value) {
     // Add the value to storage with key equal to the length of storage's keys array
+    this.storage[Object.keys(this.storage).length] = value;
   },
   // Create property for dequeue
   dequeue: function () {
