@@ -20,10 +20,14 @@ var stackMethods = {
   // Create pop method
   pop: function () {
     // If there are keys in storage's keys array
-    // Set a removedString variable equal to the last value in storage
-    // Delete the last value in storage
-
-    // Return removedString variable
+    if (this.lengthKeys()) {
+      // Set a removedString variable equal to the last value in storage
+      var removedString = this.storage[this.lengthKeys() - 1];
+      // Delete the last value in storage
+      delete this.storage[this.lengthKeys() - 1];
+      // Return removedString variable
+      return removedString;
+    }
   },
   // Create size method
   size: function () {
