@@ -20,11 +20,19 @@ var queueMethods = {
   // Add dequeue method to Queue prototype
   dequeue: function () {
     // If number of keys is greater than 0
-    // Set a removedString variable equal to the first value in storage
-    // Run a for loop on the keys array of storage
-    // Set storage at current key equal to the value of storage at the next key
-    // Delete the last property in storage
-    // Return the removedString variable
+    if (this.lengthKeys() > 0) {
+      // Set a removedString variable equal to the first value in storage
+      var removedString = this.storage[0];
+      // Run a for loop on the keys array of storage
+      for (var i = 0; i < this.lengthKeys(); i++) {
+        // Set storage at current key equal to the value of storage at the next key
+        this.storage[i] = this.storage[i + 1];
+      }
+      // Delete the last property in storage
+      delete this.storage[this.lengthKeys() - 1];
+      // Return the removedString variable
+      return removedString;
+    }
   },
   // Add size method to Queue prototype
   size: function () {
