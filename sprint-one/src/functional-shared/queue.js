@@ -10,8 +10,7 @@ var Queue = function() {
   // Extend the methods properties of queueMethods onto someInstance
   _.extend(someInstance, queueMethods);
 
-
-
+  // Return object that will be instantiated
   return someInstance;
 };
 
@@ -24,14 +23,20 @@ var queueMethods = {
   // Create property for dequeue
   dequeue: function () {
     // If there are keys in storage's keys array
-    // Create a removedString variable that will be assigned to the first value in storage
+    if (Object.keys(this.storage).length > 0) {
+      // Create a removedString variable that will be assigned to the first value in storage
+      var removedString = this.storage[0];
 
-    // Loop through the storage object
-    // Set the storage object at the current key equal to the value of the storage object at the next key
-
-    // Delete the last value in the storage object
-
-    // Return the removedString variable
+      // Loop through the storage objects keys
+      for (var i = 0; i < Object.keys(this.storage).length; i++) {
+        // Set the storage object at the current key equal to the value of the storage object at the next key
+        this.storage[i] = this.storage[i + 1];
+      }
+      // Delete the last value in the storage object
+      delete this.storage[Object.keys(this.storage)[Object.keys(this.storage).length - 1]];
+      // Return the removedString variable
+      return removedString;
+    }
   },
   // Create property for size
   size: function () {
