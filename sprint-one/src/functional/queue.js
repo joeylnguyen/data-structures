@@ -8,8 +8,8 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     // Add the passed value to the storage object with key being the current number of keys + 1
-
-
+    storage[Object.keys(storage).length + 1] = value;
+    console.log(storage);
     // joey.enqueue('a') >> {0+1 : 'a' } >> {1: 'a'}
     // joey.enqueue('b') >> {1 +1 : 'b' } >> {1: 'a', 2: 'b'}
   };
