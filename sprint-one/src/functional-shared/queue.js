@@ -36,7 +36,7 @@ var queueMethods = {
   // Create property for size
   size: function () {
     // Return the length of storage's keys array
-
+    return Object.keys(this.storage).length;
   }
 };
 
