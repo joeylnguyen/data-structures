@@ -9,19 +9,27 @@ var Stack = function() {
 // Add push method to Stack prototype
 Stack.prototype.push = function (value) {
   // Set storage at key equal to value, where key is equal to the length of storage's keys array
+  this.storage[this.lengthKeys()] = value;
 };
 // Add pop method to Stack prototype
 Stack.prototype.pop = function () {
   // If there are keys in storage
-  // Set removedString variable equal to the last value in storage
-  // Delete the last value in storage
-  // Return removedString
+  if (this.lengthKeys()) {
+    // Set removedString variable equal to the last value in storage
+    var removedString = this.storage[this.lengthKeys() - 1];
+    // Delete the last value in storage
+    delete this.storage[this.lengthKeys() - 1];
+    // Return removedString
+    return removedString;
+  }
 };
 // Add size method to Stack prototype
 Stack.prototype.size = function () {
   // Return invocation of lengthKeys
+  return this.lengthKeys();
 };
 // Add lengthKeys method to Stack prototype
 Stack.prototype.lengthKeys = function () {
   // Return the length of storage's keys array
+  return Object.keys(this.storage).length;
 };
