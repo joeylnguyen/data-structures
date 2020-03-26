@@ -24,8 +24,8 @@ class Queue {
         // Set storage at current key equal to value at storage of next key
         this.storage[i] = this.storage[i + 1];
       }
-      // delete the first property of storage
-      delete this.storage[0];
+      // delete the last property of storage
+      delete this.storage[this.lengthKeys() - 1];
       // return removedString
       return removedString;
     }
