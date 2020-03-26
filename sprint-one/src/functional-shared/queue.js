@@ -14,10 +14,17 @@ var Queue = function() {
 
 var queueMethods = {
   // Create property for enqueue
-
+  enqueue: function (value) {
+    console.log('hi');
+  },
   // Create property for dequeue
-
+  dequeue: function () {
+    console.log('bye');
+  },
   // Create property for size
+  size: function () {
+    console.log('why');
+  }
 };
 
 
