@@ -15,6 +15,7 @@ var stackMethods = {
   // Create push method
   push: function (value) {
     // Set storage of someInstance at the length of storage's keys array equal to the value
+    this.storage[this.lengthKeys()] = value;
   },
   // Create pop method
   pop: function () {
@@ -27,10 +28,12 @@ var stackMethods = {
   // Create size method
   size: function () {
     // Return the invocation of lengthKeys
+    return this.lengthKeys();
   },
   // Create lengthKeys method
   lengthKeys: function () {
     // return the length of storage's keys array
+    return Object.keys(this.storage).length;
   }
 };
 
