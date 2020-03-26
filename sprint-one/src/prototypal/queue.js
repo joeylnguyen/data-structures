@@ -7,6 +7,12 @@ var Queue = function() {
 
   // Create storage property in someInstance
   someInstance.storage = {};
+  someInstance.lengthKeys = function () {
+    return Object.keys(someInstance.storage).length;
+  };
+  someInstance.lengthValues = function () {
+    return Object.values(someInstance.storage).length;
+  };
 
   return someInstance;
 };
@@ -15,7 +21,7 @@ var queueMethods = {
   // Add enqueue method to Queue prototype
   enqueue: function (value) {
     // Set storage at key equal to number of keys in storage equal to value
-    this.storage[Object.keys(this.storage).length] = value;
+    this.storage[this.lengthKeys()] = value;
   },
   // Add dequeue method to Queue prototype
   dequeue: function () {
@@ -29,7 +35,7 @@ var queueMethods = {
   // Add size method to Queue prototype
   size: function () {
     // Return the length of storage's keys array
-    return Object.keys(this.storage).length;
+    return this.lengthKeys();
   }
 };
 
