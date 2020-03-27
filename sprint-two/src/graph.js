@@ -71,8 +71,12 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  if (this.contains(fromNode) && this.contains(toNode)) {
+    // Use splice to remove each node from eachother's array, leveraging indexOf for index lookup
+    this.connections[fromNode].splice(this.connections[fromNode].indexOf(toNode), 1);
+    this.connections[toNode].splice(this.connections[toNode].indexOf(fromNode), 1);
+  }
 };
-// Use splice to remove each node from eachother's array, leveraging indexOf for index lookup .splice(this.connections[fromNode].indexOf(toNode), 1)
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
