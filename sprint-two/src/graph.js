@@ -12,7 +12,6 @@ Graph.prototype.addNode = function(node) {
     // Add node to connections object with node as the key and an empty array as a value
     this.connections[node] = [];
   }
-
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -30,17 +29,17 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  if (this.contains(node)) {
-
-    // { 4:[], 5: []}
+  // Check if node exists
+  var self = this; // this will be graph. self.forEachNode
+  if (self.contains(node)) {
+    // Call forEachNode to call a function that calls removeEdge on each node in connections, and removes the input node from each node's edges array
+    self.forEachNode(function(item) {
+      self.removeEdge(node, item);
+    });
+    // Delete the input node
+    delete self.connections[node];
   }
 };
-// Check if the node we want to remove has edges
-// Iterate over its edges array
-// Use the value at current i to lookup the node in the graph
-//
-
-// Use delete to remove this.connections[node];
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
@@ -89,6 +88,12 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ - .addNode time complexity is O(1) because key lookup on objects has constant time complexity
+- .contains time complexity is O(1) because it is also doing key lookup on an object
+- .removeNode time complexity is O(n^2) because it does a loop when forEachNode is called, and then an inner loop at each iteration is performed when we call .removeEdge
+- .addEdge time complexity is O(n) because it uses .contains, which in itself has O(n) time complexity because it iterates over its nodes to find if the input nodes exist
+- .removeEdge time complexity is O(n) because it also uses .contains to check if each input node exists
+- .forEachNode time complexity is O(n) because it loops through each node
  */
 
 
