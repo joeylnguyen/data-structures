@@ -30,22 +30,38 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+  if (this.contains(node)) {
 
+    // { 4:[], 5: []}
+  }
 };
+// Check if the node we want to remove has edges
+// Iterate over its edges array
+// Use the value at current i to lookup the node in the graph
+//
+
 // Use delete to remove this.connections[node];
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
+  // Check if both exist > if (this.connections[fromNode] && this.connections[toNode])
+  if (this.contains(fromNode) && this.contains(toNode)) {
+    // Since undirected graph, relationship is symmetrical. Only need to check one node
+    // If the index of toNode in fromNode's array is greater than 0
+    if (this.connections[fromNode].indexOf(toNode) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  // Return false if first condition isn't satisfied
+  return false;
 };
-// Check if either exist > if (this.connections[fromNode] && this.connections[toNode])
-// Since undirected graph, relationship is symmetrical. Only need to check one node
-// If the index of toNode in fromNode's array is greater than 0
-// return true
-// Otherwise, return  false
-// Return false if first condition isn't satisfied
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
+
+
 };
 // Add toNode to fromNode's array
 // Add fromNode to toNode's array
