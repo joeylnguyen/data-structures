@@ -8,7 +8,7 @@ var Graph = function() {
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
   // If current node exists in graph connections
-  if(this.connections[node] === undefined) {
+  if (this.connections[node] === undefined) {
     // Add node to connections object with node as the key and an empty array as a value
     this.connections[node] = [];
   }
@@ -17,14 +17,20 @@ Graph.prototype.addNode = function(node) {
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
+  // If this.connections[node] exists
+  if (this.connections[node]) {
+    // Then return true
+    return true;
+  } else {
+    // Otherwise return false
+    return false;
+  }
 
 };
-// If this.connections[node] exists
-// Then return true
-// Otherwise return false
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+
 };
 // Use delete to remove this.connections[node];
 
