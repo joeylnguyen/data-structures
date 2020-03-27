@@ -80,8 +80,12 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  // Loop through connections
+  for (let node in this.connections) {
+    // Invoke callback on each node
+    cb(node);
+  }
 };
-// Use _.each on this.connections
 
 /*
  * Complexity: What is the time complexity of the above functions?
