@@ -52,6 +52,8 @@ describe('graph', function() {
     expect(graph.hasEdge(4, 5)).to.equal(true);
     graph.removeNode(5);
     expect(graph.hasEdge(4, 5)).to.equal(false);
+    expect(graph.connections[4].indexOf(5) === -1).to.equal(true);
+    expect(graph.connections[4].indexOf(5) >= 0).to.equal(false);
   });
 
   it('should execute a callback on each node in the graph', function() {
@@ -68,4 +70,6 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+
 });
