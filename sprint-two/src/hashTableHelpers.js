@@ -21,8 +21,25 @@ var LimitedArray = function(limit) {
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
-    storage[index] = value;
+    // Make storage hold arrays at each index
+    // check if storage[index] is not undefined, if it is, we set the storage[index] to an array with the input value stored in it
+    if (!storage[index]) {
+      storage[index] = [value];
+      // If, storage has more than 0
+    } else if (storage[index].length > 0) {
+      for (let i = 0; i < storage[index].length; i++) {
+        // If the key of the tuple in storage at index is equal to the first value at index 0 of the input array
+        if (storage[index][i][0] === value[0]) {
+          // Set the value of the current tuple to the value of the input tuple
+          storage[index][i][1] = value[1];
+          return;
+        }
+      }
+      // Otherwise, push input value to the array at index
+      storage[index].push(value);
+    }
   };
+
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
       callback(storage[i], i, storage);
@@ -56,4 +73,9 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ - .get has time complexity of O(1) because it uses a index lookup
+ - .set has time complexity of O(1) given ideal circumstances. At worst, it becomes O(n) due to collisions
+ - .each has time complexity of O(n) because it loops through storage
+ - checkLimit has time complexity of O(1) because it's comparing two values
+ - getIndexBelowMaxForKey is O(n) because it's looping through the input string/key
  */
